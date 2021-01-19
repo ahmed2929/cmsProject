@@ -1,0 +1,39 @@
+{
+  "name": "pmsbackend",
+  "version": "1.0.0",
+  "description": "API of Pmsgriddatamanager",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "kizito917",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cloudinary": "^1.23.0",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-mongo-sanitize": "^2.0.0",
+    "express-rate-limit": "^5.1.3",
+    "express-session": "^1.17.0",
+    "express-validator": "^6.6.1",
+    "helmet": "^4.1.0",
+    "hpp": "^0.2.3",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.20",
+    "mongoose": "^5.7.7",
+    "multer": "^1.4.1",
+    "node-xlsx": "^0.15.0",
+    "nodemailer": "^6.3.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "xls-to-json-lc": "^0.3.4",
+    "xlsx-to-json-lc": "^0.5.0",
+    "xss-clean": "^0.1.1"
+  }
+}
