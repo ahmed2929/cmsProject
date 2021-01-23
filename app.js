@@ -24,8 +24,8 @@ const invoiceRoutes = require("./routes/admin/invoice");
 // Port
 const port = process.env.PORT || 8080;
 //connection url
-const DB = process.env.MONGOLAB_URI || `mongodb+srv://AK:1234@cluster0.wugxw.mongodb.net/cmsProject?retryWrites=true&w=majority
-`;
+const DB = process.env.MONGOLAB_URI //|| `mongodb+srv://AK:1234@cluster0.wugxw.mongodb.net/cmsProject?retryWrites=true&w=majority
+//`;
 
 //HTTP headers
 app.use(helmet());

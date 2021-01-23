@@ -19,6 +19,7 @@ cloudinary.config({
 
 // Signup
 exports.signUp = async (req, res) => {
+  console.debug("inside user signup req,body is : ",req.body)
   try {
     // get user with email
     console.debug("entered the controller")
