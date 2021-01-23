@@ -5,13 +5,16 @@ const Document = require("../../models/document");
 const jwt = require("jsonwebtoken");
 const cloudinary = require("cloudinary").v2;
 const messages = require("../../messages/index");
-const xlsx = require('node-xlsx').default;
+//const xlsx = require('node-xlsx').default;
+const xlsx = require("xlsx");
+//const excelToJson = require('convert-excel-to-json');
 const _ = require('lodash');
 const {
     successResMsg,
     errorResMsg
 } = require("../../utils/responseHandler");
 const mail = require("../../mailerConfig");
+const { json } = require("body-parser");
 
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
@@ -180,50 +183,103 @@ exports.updateUserData = async (req, res) => {
 exports.bulkUser = async (req, res) => {
     try {
         console.debug("add user bulk is runing ")
-        const file = xlsx.parse(req.file.path);
-        file[0].data.map(async (item) => {
-          //  console.debug("file[0].data is ",file[0].data)
-            if (item[0] === "Client Name") {
-                console.log("do nothing")
-            } else {
-                let director = {}
-                req.body.director = director
-                req.body.director.fullName = item[0]
-                req.body.accountType = item[1]
-                req.body.companyName = item[2]
-                req.body.companyAddress = item[3]
-                req.body.city = item[4]
-                req.body.postalCode = item[5]
-                req.body.country = item[6]
-                req.body.phoneNumber = item[7]
-                req.body.email = item[8]
-                req.body.websiteUrl = item[9]
-                req.body.companyBegin = item[10]
-                req.body.subscriptionBegin = item[25]
-                req.body.subscriptionEnd = item[26]
-                req.body.companyRegNo = item[13]
-                req.body.utrNo = item[14]
-                req.body.vatSubmitType = item[15]
-                req.body.vatScheme = item[16]
-                req.body.vatRegNo = item[17]
-                req.body.vatRegDate = item[18]
-                req.body.director.dateOfBirth = item[19]
-                req.body.insuranceNumber = item[20]
-                req.body.payeeRefNo = item[21]
-                req.body.accountOfficer = item[22]
-                req.body.accountStatus = item[24]
-                req.body.created_dt = 27
-                req.body.password = "password"
-                req.body.role = "user";
+        const file = xlsx.readFile(req.file.path,{
+            cellDates:true
+        });
+      
+        const ws = file.Sheets["Sheet1"]
+      
+         const userJsonObject=xlsx.utils.sheet_to_json(ws)
+         //console.debug(userJsonObject[1])
+         userJsonObject.map(async user=>{
+              if(user.ID){
+                  var newUserObj={
 
-                console.debug("req.body is ",req.body)
-               // const newUser = await User.create(req.body)
+                    director:{
+                        fullName:user.Director,
+                        dateOfBirth:user.__EMPTY
+                    },
+                    
+                         
+                             accountType:user.accountType,
+                             companyName:user.CompanyName ,
+                             companyAddres:user.Address ,
+                             city:user.City,
+                             postalCode:user.PostalCode,
+                             country:user.Country,                             
+                             phoneNumber :user.PhoneNumber,
+                             email :user.email,
+                             websiteUrl :user.Website,
+                             companyBegin:user.CompanyBegin,
+                             subscriptionegin :user.subscriptionegin,
+                             subscriptionnd :user.subscriptionnd,
+                             companyRegNo :user.CompanyRegNo,
+                             utrNo :user.UTRNo,
+                            vatSubmitTyp :user.VATSubmitType,
+                             vatScheme :user.VATScheme,
+                             vatRegNo :user.VATRegNo,
+                             vatRegDate :user.VATRegDate,
+                             insuranceNumer : user.InsuranceNumber,
+                             payeeRefNo :user.PayeeRefNo,
+                             accountOfficer :user.accountOfficer,
+                            password : "password",
+                            role : "user"
+                 
+             
+             
+             
+             
+             
+                        }
 
+
+                const newUser = await User.create(newUserObj)
             }
+          })
+        // file[0].data.map(async (item) => {
+        //   //  console.debug("file[0].data is ",file[0].data)
+        //     if (item[0] === "Client Name") {
+        //         console.log("do nothing")
+        //     } else {
+        //         let director = {}
+        //         req.body.director = director
+        //         req.body.director.fullName = item[0]
+        //         req.body.accountType = item[1]
+        //         req.body.companyName = item[2]
+        //         req.body.companyAddress = item[3]
+        //         req.body.city = item[4]
+        //         req.body.postalCode = item[5]
+        //         req.body.country = item[6]
+        //         req.body.phoneNumber = item[7]
+        //         req.body.email = item[8]
+        //         req.body.websiteUrl = item[9]
+        //         req.body.companyBegin = item[10]
+        //         req.body.subscriptionBegin = item[25]
+        //         req.body.subscriptionEnd = item[26]
+        //         req.body.companyRegNo = item[13]
+        //         req.body.utrNo = item[14]
+        //         req.body.vatSubmitType = item[15]
+        //         req.body.vatScheme = item[16]
+        //         req.body.vatRegNo = item[17]
+        //         req.body.vatRegDate = item[18]
+        //         req.body.director.dateOfBirth = item[19]
+        //         req.body.insuranceNumber = item[20]
+        //         req.body.payeeRefNo = item[21]
+        //         req.body.accountOfficer = item[22]
+        //         req.body.accountStatus = item[24]
+        //         req.body.created_dt = 27
+        //         req.body.password = "password"
+        //         req.body.role = "user";
 
-        })
+        //         console.debug("req.body is ",req.body)
+        //        // const newUser = await User.create(req.body)
+
+        //     }
+
+        // })
         return successResMsg(res, 201, "All users added sucessfully");
     } catch (err) {
+        console.debug(err)
         return errorResMsg(res, 500, err);
     }
 }
