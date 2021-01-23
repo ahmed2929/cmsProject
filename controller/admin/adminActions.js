@@ -191,7 +191,7 @@ exports.bulkUser = async (req, res) => {
       
          const userJsonObject=xlsx.utils.sheet_to_json(ws)
          //console.debug(userJsonObject[1])
-         userJsonObject.map(async user=>{
+        for(let user of userJsonObject){
               if(user.ID){
                   var newUserObj={
 
@@ -233,9 +233,10 @@ exports.bulkUser = async (req, res) => {
                         }
 
 
-                const newUser = await User.create(newUserObj)
+                const newUser = await (await User.create(newUserObj)).save()
+                        console.debug("userCreated ",newUser)
             }
-          })
+          }
         // file[0].data.map(async (item) => {
         //   //  console.debug("file[0].data is ",file[0].data)
         //     if (item[0] === "Client Name") {
