@@ -10,7 +10,7 @@ exports.signUpValidationRules = () => {
         body("accountType").notEmpty().isIn(["Company", "Individual"]).withMessage("Account Type should be Company or Individual"),
         body("companyName").notEmpty().withMessage("Company Name must not be empty"),
         body("companyAddress").notEmpty().withMessage("Company Address must not be empty"),
-        body("city").notEmpty().isAlpha().withMessage("City must not be empty"),
+        body("city").notEmpty().withMessage("City must not be empty"),
         body("postalCode").notEmpty().withMessage("Postal code must not be empty"),
         body("phoneNumber").notEmpty().withMessage("Phone number must not be empty"),
         body("websiteUrl").notEmpty().withMessage("Website url must not be empty"),
