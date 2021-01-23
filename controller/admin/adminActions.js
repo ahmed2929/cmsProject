@@ -182,7 +182,7 @@ exports.bulkUser = async (req, res) => {
         console.debug("add user bulk is runing ")
         const file = xlsx.parse(req.file.path);
         file[0].data.map(async (item) => {
-            console.debug("file[0].data is ",file[0].data)
+          //  console.debug("file[0].data is ",file[0].data)
             if (item[0] === "Client Name") {
                 console.log("do nothing")
             } else {
