@@ -5,6 +5,7 @@ const Document = require("../../models/document");
 const jwt = require("jsonwebtoken");
 const cloudinary = require("cloudinary").v2;
 const messages = require("../../messages/index");
+const fs=require("fs")
 //const xlsx = require('node-xlsx').default;
 const xlsx = require("xlsx");
 //const excelToJson = require('convert-excel-to-json');
@@ -200,10 +201,10 @@ exports.bulkUser = async (req, res) => {
                         dateOfBirth:user.__EMPTY
                     },
                     
-                         
+                          
                              accountType:user.accountType,
                              companyName:user.CompanyName ,
-                             companyAddres:user.Address ,
+                             companyAddress:user.Address ,
                              city:user.City,
                              postalCode:user.PostalCode,
                              country:user.Country,                             
@@ -215,11 +216,11 @@ exports.bulkUser = async (req, res) => {
                              subscriptionnd :user.subscriptionnd,
                              companyRegNo :user.CompanyRegNo,
                              utrNo :user.UTRNo,
-                            vatSubmitTyp :user.VATSubmitType,
+                             vatSubmitType:user.VATSubmitType,
                              vatScheme :user.VATScheme,
                              vatRegNo :user.VATRegNo,
                              vatRegDate :user.VATRegDate,
-                             insuranceNumer : user.InsuranceNumber,
+                             insuranceNumber : user.InsuranceNumber,
                              payeeRefNo :user.PayeeRefNo,
                              accountOfficer :user.accountOfficer,
                             password : "password",
@@ -278,6 +279,7 @@ exports.bulkUser = async (req, res) => {
         //     }
 
         // })
+        fs.unlinkSync(req.file.path);
         return successResMsg(res, 201, "All users added sucessfully");
     } catch (err) {
         console.debug(err)
