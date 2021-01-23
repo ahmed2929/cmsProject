@@ -82,6 +82,7 @@ exports.adminlogIn = async (req, res) => {
             password
         } = req.body
         // check if user exists and select password
+        
         const user = await Admin.findOne({
             email
         }).select("+password");

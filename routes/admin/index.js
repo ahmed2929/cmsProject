@@ -7,7 +7,7 @@ const auth = require("../../middleware/auth");
 
 router.post(
     "/signup",
-    auth.authorization("superadmin"),
+   auth.authorization("superadmin"),
     validation.adminSignUpValidationRules(),
     validation.validate,
     adminController.adminSignUp

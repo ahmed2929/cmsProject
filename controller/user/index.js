@@ -40,6 +40,8 @@ exports.signUp = async (req, res) => {
     // create new user if user does not exists
     req.body.role = "user";
     req.body.accountStatus = 'prospect'
+
+   
     const newUser = await User.create(req.body);
 
     // create user token

@@ -5,7 +5,7 @@ const validation = require("../../middleware/validation");
 const auth = require("../../middleware/auth");
 const multer = require("multer");
 const path = require('path');
-
+const userController=require("../../controller/user/index")
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -57,5 +57,17 @@ router.post(
     upload.single("BulkExcel"),
     adminActionsController.bulkUser
 );
+
+
+router.post(
+  "/createNewUser",
+  auth.authorization("superadmin","admin"),
+  validation.signUpValidationRules(),
+  validation.validate,
+  userController.signUp
+
+  
+);
+
 
 module.exports = router;
