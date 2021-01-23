@@ -69,5 +69,25 @@ router.post(
   
 );
 
+router.post(
+  "/editUserInfo",
+  auth.authorization("superadmin","admin"),
+  validation.updateUserInfo(),
+  validation.validate,
+  adminActionsController.updateUserInfo
+
+  
+);
+
+router.post(
+  "/deleteUser",
+  auth.authorization("superadmin","admin"),
+  validation.updateUserInfo(),
+  validation.validate,
+  adminActionsController.deletUser
+
+  
+);
+
 
 module.exports = router;

@@ -179,6 +179,7 @@ exports.updateUserData = async (req, res) => {
 
 exports.bulkUser = async (req, res) => {
     try {
+        console.debug("add user bulk is runing ")
         const file = xlsx.parse(req.file.path);
         file[0].data.map(async (item) => {
             if (item[0] === "Client Name") {
@@ -215,7 +216,7 @@ exports.bulkUser = async (req, res) => {
                 req.body.role = "user";
 
                 const newUser = await User.create(req.body)
-
+                
             }
 
         })
@@ -268,3 +269,32 @@ exports.assignUsersToAdmin = async (req, res) => {
 
 
 }
+
+exports.updateUserInfo = async (req, res) => {
+    try {
+    
+      const id = req.body.ID;
+  
+      const updatedUser = await User.findByIdAndUpdate(id, req.body, {
+        new: true,
+      });
+  
+      return successResMsg(res, 200, updatedUser);
+    } catch (err) {
+      return errorResMsg(res, 500, err);
+    }
+  };
+
+  exports.deletUser = async (req, res) => {
+    try {
+    
+      const id = req.body.ID;
+  
+      const deleteddUser = await User.findByIdAndDelete(id)
+  
+      return successResMsg(res, 200, deleteddUser);
+    } catch (err) {
+      return errorResMsg(res, 500, err);
+    }
+  };
+    

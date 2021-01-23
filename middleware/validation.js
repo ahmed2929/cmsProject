@@ -81,6 +81,14 @@ exports.bookPostValidationRules = () => {
     ]
 }
 
+
+exports.updateUserInfo = () => {
+    return [
+        body("ID").notEmpty().withMessage("ID is required"),
+    ]
+}
+
+
 exports.validate = (req, res, next) => {
     try {
         const errors = validationResult(req)
