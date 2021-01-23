@@ -191,7 +191,7 @@ exports.bulkUser = async (req, res) => {
         const ws = file.Sheets["Sheet1"]
       
          const userJsonObject=xlsx.utils.sheet_to_json(ws)
-         //console.debug(userJsonObject[1])
+         console.debug(userJsonObject[1])
         for(let user of userJsonObject){
               if(user.ID){
                   var newUserObj={
@@ -204,7 +204,7 @@ exports.bulkUser = async (req, res) => {
                           
                              accountType:user.accountType,
                              companyName:user.CompanyName ,
-                             companyAddress:user.Address ,
+                             companyAddress:user.CompanyAddress ,
                              city:user.City,
                              postalCode:user.PostalCode,
                              country:user.Country,                             
