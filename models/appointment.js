@@ -11,9 +11,14 @@ let appointmentSchema = new Schema({
 		require: true
 	},
 	appointmentDate: {
-		type: Date,
+		type: String,
 		require: true
 	},
+	EndDate :{
+		type: String,
+		require: true
+	},
+	
 	appointmentMessage: {
 		type: String,
 		require: true
@@ -29,6 +34,10 @@ let appointmentSchema = new Schema({
 	created_dt: {
 		type: Date,
 		default: Date.now(),
+	},
+	accountOfficer:{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "Admin"
 	}
 });
 

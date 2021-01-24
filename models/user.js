@@ -87,6 +87,7 @@ var userSchema = new Schema({
   },
   accountStatus: {
     type: String,
+    default:'prospect'
   },
 
   subscriptionBegin: {
@@ -108,6 +109,7 @@ var userSchema = new Schema({
   },
   role: {
     type: String,
+    default:"user"
   },
 });
 
