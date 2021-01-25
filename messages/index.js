@@ -18,7 +18,7 @@ exports.welcomeMessage = (name) => {
         <hr style="color:white"/>
     
         <div style="color:white; text-decoration:none;padding-top:10px; padding-bottom:10px;">
-            You are receiving this email because you are a registered user on <a href="https://www.ronzlsdesk.co.uk"> RONZL<a>
+            You are receiving this email because you are a registered user on <a href="${frontend_domain}"> RONZL<a>
         </div>
     </div>
 </div>
