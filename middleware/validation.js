@@ -11,6 +11,7 @@ exports.signUpValidationRules = () => {
         //body("companyName").notEmpty().withMessage("Company Name must not be empty"),
         body("companyName").custom((value,{req})=>{
             if(!value&&req.body.accountType==='Company'){
+                
                 return Promise.reject('Company Name must not be empty');
             }
             return true ;

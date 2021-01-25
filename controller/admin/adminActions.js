@@ -202,7 +202,7 @@ exports.bulkUser = async (req, res) => {
                     },
                     
                           
-                             accountType:user.accountType,
+                            accountType:user.accountType,
                              companyName:user.CompanyName ,
                              companyAddress:user.CompanyAddress ,
                              city:user.City,
@@ -234,7 +234,7 @@ exports.bulkUser = async (req, res) => {
                         }
 
 
-                const newUser = await (await User.create(newUserObj)).save()
+              const newUser = await (await User.create(newUserObj)).save()
                         console.debug("userCreated ",newUser)
             }
           }
