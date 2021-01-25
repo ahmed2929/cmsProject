@@ -39,6 +39,7 @@ exports.uploadDocToUser = async (req, res) => {
             let docContentUrl = result.secure_url;
             req.body.docContentUrl = docContentUrl;
             const newDoc = await Document.create(req.body);
+            fs.unlinkSync(req.file.path);
             return successResMsg(res, 201, newDoc);
         });
     } catch (err) {
