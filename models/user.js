@@ -18,6 +18,7 @@ var userSchema = new Schema({
   },
   companyName: {
     type: String,
+    default:"null"
   },
   companyAddress: {
     type: String,
