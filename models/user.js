@@ -39,34 +39,44 @@ var userSchema = new Schema({
   },
   websiteUrl: {
     type: String,
+    default:"null"
   },
 
   companyBegin: {
     type: Date,
+    default:"0000"
   },
   companyRegNo: {
     type: String,
+    default:"0000"
   },
   utrNo: {
     type: String,
+    default:"0000"
   },
   vatSubmitType: {
     type: String,
+    default:"null"
   },
   vatScheme: {
     type: String,
+    default:"null"
   },
   vatRegNo: {
     type: String,
+    default:"000"
   },
   vatRegDate: {
     type: Date,
+    default:"0000"
   },
   insuranceNumber: {
     type: String,
+    default:"0000"
   },
   payeeRefNo: {
     type: String,
+    default:"0000"
   },
   password: {
     type: String,
