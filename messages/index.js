@@ -1,3 +1,5 @@
+const frontend_domain=process.env.FRONTEND_DOMIN;
+
 exports.welcomeMessage = (name) => {
 	return `
     <div style="font-family: sans-serif; margin:0; background-color:rgb(72, 72, 155);">
@@ -40,14 +42,14 @@ ${email}</p>
 		<p style="color:white;padding-top:10px; padding-bottom:10px; line-height: 2em;">To update your account, click the button below.</p>
 
         <button style="background-color: white;  border-radius: 5px; padding:10px">
-        <a style="text-decoration:none; color:blue;" href="http://www.localhost:3000/resetpage?token=${emailtoken}"">Reset my password</a>
+        <a style="text-decoration:none; color:blue;" href="${frontend_domain}/resetpage?token=${emailtoken}"">Reset my password</a>
     </button>
 
 		<p style="color:white;padding-top:10px; line-height: 2em; margin:0">Cheers,</p>
 		<p style="color:white; padding-bottom:10px; line-height: 2em;margin:0">RONZL</p>
 	
 		<div style="color:white; text-decoration:none;padding-top:10px; padding-bottom:10px;">
-			You are receiving this email because you are a registered user on <a href="https://www.ronzlsdesk.co.uk"> RONZL<a>
+			You are receiving this email because you are a registered user on <a href="${frontend_domain}"> RONZL<a>
 		</div>
 	</div>
 </div>
@@ -70,14 +72,14 @@ exports.resetSucess = (name) => {
 		
 
 		<button style="background-color: white;  border-radius: 5px; padding:10px; margin-top:20xp; margin-bottom: 40px;">
-			<a style="text-decoration:none; color:blue; font-size:20px" href="https://localhost:3000">Go to RONZL </a>
+			<a style="text-decoration:none; color:blue; font-size:20px" href="${frontend_domain}">Go to RONZL </a>
 		</button>
 
 
 		<hr style="color:white"/>
 	
 		<div style="color:white; text-decoration:none;padding-top:10px; padding-bottom:10px;">
-			You are receiving this email because you are a registered user on <a href="https://www.ronzlsdesk.co.uk"> RONZL<a>
+			You are receiving this email because you are a registered user on <a href="${frontend_domain}"> RONZL<a>
 		</div>
 	</div>
 </div>
@@ -105,14 +107,14 @@ exports.premiumMessage = (name) => {
 		
 
 		<button style="background-color: white;  border-radius: 5px; padding:10px; margin-top:20xp; margin-bottom: 40px;">
-			<a style="text-decoration:none; color:blue; font-size:20px" href="https://localhost:3000">Go to RONZL </a>
+			<a style="text-decoration:none; color:blue; font-size:20px" href="${frontend_domain}">Go to RONZL </a>
 		</button>
 
 
 		<hr style="color:white"/>
 	
 		<div style="color:white; text-decoration:none;padding-top:10px; padding-bottom:10px;">
-			You are receiving this email because you are a registered user on <a href="https://www.ronzlsdesk.co.uk"> RONZL<a>
+			You are receiving this email because you are a registered user on <a href="${frontend_domain}"> RONZL<a>
 		</div>
 	</div>
 </div>
@@ -131,13 +133,13 @@ exports.appointmentMessage = (name) => {
 		<p style="color:white; padding-bottom:20px; line-height: 2em;">Hi ${name}, Your appointment has been confirmed.</p>
 		
 		<button style="background-color: white;  border-radius: 5px; padding:10px; margin-top:20xp; margin-bottom: 40px;">
-			<a style="text-decoration:none; color:blue; font-size:20px" href="https://localhost:3000">Go to RONZL </a>
+			<a style="text-decoration:none; color:blue; font-size:20px" href="${frontend_domain}">Go to RONZL </a>
 		</button>
 
 		<hr style="color:white"/>
 	
 		<div style="color:white; text-decoration:none;padding-top:10px; padding-bottom:10px;">
-			You are receiving this email because you are a registered user on <a href="https://www.ronzlsdesk.co.uk"> RONZL<a>
+			You are receiving this email because you are a registered user on <a href="${frontend_domain}"> RONZL<a>
 		</div>
 	</div>
 </div>
@@ -156,13 +158,13 @@ exports.appointmentConfirmed = (name) => {
 		<p style="color:white; padding-bottom:20px; line-height: 2em;">Hi ${name}, Your appointment has been confirmed.</p>
 		
 		<button style="background-color: white;  border-radius: 5px; padding:10px; margin-top:20xp; margin-bottom: 40px;">
-			<a style="text-decoration:none; color:blue; font-size:20px" href="https://localhost:3000">Go to RONZL </a>
+			<a style="text-decoration:none; color:blue; font-size:20px" href="${frontend_domain}">Go to RONZL </a>
 		</button>
 
 		<hr style="color:white"/>
 	
 		<div style="color:white; text-decoration:none;padding-top:10px; padding-bottom:10px;">
-			You are receiving this email because you are a registered user on <a href="https://www.ronzlsdesk.co.uk"> RONZL<a>
+			You are receiving this email because you are a registered user on <a href="${frontend_domain}"> RONZL<a>
 		</div>
 	</div>
 </div>
@@ -181,13 +183,13 @@ exports.rejectAppointmentMessage = (name) => {
 		<p style="color:white; padding-bottom:20px; line-height: 2em;">Hi ${name}, Your appointment has been rejected.</p>
 		
 		<button style="background-color: white;  border-radius: 5px; padding:10px; margin-top:20xp; margin-bottom: 40px;">
-			<a style="text-decoration:none; color:blue; font-size:20px" href="https://localhost:3000">Go to RONZL </a>
+			<a style="text-decoration:none; color:blue; font-size:20px" href="${frontend_domain}">Go to RONZL </a>
 		</button>
 
 		<hr style="color:white"/>
 	
 		<div style="color:white; text-decoration:none;padding-top:10px; padding-bottom:10px;">
-			You are receiving this email because you are a registered user on <a href="https://www.ronzlsdesk.co.uk"> RONZL<a>
+			You are receiving this email because you are a registered user on <a href="${frontend_domain}"> RONZL<a>
 		</div>
 	</div>
 </div>
