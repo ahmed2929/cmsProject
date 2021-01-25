@@ -2,7 +2,7 @@ const frontend_domain=process.env.FRONTEND_DOMIN;
 
 exports.welcomeMessage = (name) => {
 	return `
-    <div style="font-family: sans-serif; margin:0; background-color:rgb(72, 72, 155);">
+    <div style="font-family: sans-serif; margin:0; background-color:black;">
     <div style=" padding-top:30px; padding-left:40px; width:80%; margin-left:auto; margin-right:auto" >
         
         <p style="margin:0; font-size:20px ">Logo</p>
@@ -27,7 +27,7 @@ exports.welcomeMessage = (name) => {
 
 exports.forgetMessage = (email, emailtoken) => {
 	return `
-    <div style="font-family: sans-serif; margin:0; background-color:rgb(72, 72, 155);">
+    <div style="font-family: sans-serif; margin:0; background-color:black;">
 	<div style=" padding-top:30px; padding-left:40px; width:80%; margin-left:auto; margin-right:auto" >
 		
 		<p style="margin:0; font-size:20px ">Logo</p>
@@ -58,7 +58,7 @@ ${email}</p>
 
 exports.resetSucess = (name) => {
 	return `
-    <div style="font-family: sans-serif; margin:0; background-color:rgb(72, 72, 155);">
+    <div style="font-family: sans-serif; margin:0; background-color:black;">
 	<div style=" padding-top:30px; padding-left:40px; width:80%; margin-left:auto; margin-right:auto" >
 		
 		<p style="margin:0; font-size:20px ">Logo</p>
@@ -88,7 +88,7 @@ exports.resetSucess = (name) => {
 
 exports.premiumMessage = (name) => {
 	return `
-    <div style="font-family: sans-serif; margin:0; background-color:rgb(72, 72, 155);">
+    <div style="font-family: sans-serif; margin:0; background-color:black;">
 	<div style=" padding-top:30px; padding-left:40px; width:80%; margin-left:auto; margin-right:auto" >
 		
 		<p style="margin:0; font-size:20px ">Logo</p>
@@ -124,7 +124,7 @@ exports.premiumMessage = (name) => {
 
 exports.appointmentMessage = (name) => {
 	return `
-    <div style="font-family: sans-serif; margin:0; background-color:rgb(72, 72, 155);">
+    <div style="font-family: sans-serif; margin:0; background-color:black;">
 	<div style=" padding-top:30px; padding-left:40px; width:80%; margin-left:auto; margin-right:auto" >
 		
 		<p style="margin:0; font-size:20px ">Logo</p>
