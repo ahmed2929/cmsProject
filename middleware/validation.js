@@ -8,7 +8,13 @@ exports.signUpValidationRules = () => {
     return [
         body("director").notEmpty().withMessage("Director field must not be empty"),
         body("accountType").notEmpty().isIn(["Company", "Individual"]).withMessage("Account Type should be Company or Individual"),
-        body("companyName").notEmpty().withMessage("Company Name must not be empty"),
+        //body("companyName").notEmpty().withMessage("Company Name must not be empty"),
+        body("companyName").custom((value,{req})=>{
+            if(!value&&req.body.accountType==='Company'){
+                return Promise.reject('Company Name must not be empty');
+            }
+            return true ;
+        }),
         body("companyAddress").notEmpty().withMessage("Company Address must not be empty"),
         body("city").notEmpty().withMessage("City must not be empty"),
         body("postalCode").notEmpty().withMessage("Postal code must not be empty"),

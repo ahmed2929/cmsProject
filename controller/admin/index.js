@@ -219,7 +219,7 @@ exports.adminResetPassword = async (req, res) => {
         const user = await Admin.findOne({
             _id: id
         }).select("+password");
-
+            
 
 
         if (!user || !(await user.correctPassword(oldPassword, user.password))) {
