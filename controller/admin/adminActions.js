@@ -192,8 +192,18 @@ exports.bulkUser = async (req, res) => {
       
          const userJsonObject=xlsx.utils.sheet_to_json(ws)
          console.debug(userJsonObject[1])
+         var hashedEmilObject={}
+         const users=await User.find()
+         users.forEach(user=>{
+             hashedEmilObject[user.email]=true
+         })
         for(let user of userJsonObject){
               if(user.ID){
+                  if(hashedEmilObject[user.email]){
+                      console.debug("email found will contnue user ",user)
+                      continue;
+                  }
+                  console.log("email not fount will create",user)
                   var newUserObj={
 
                     director:{

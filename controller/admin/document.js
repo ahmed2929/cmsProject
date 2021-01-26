@@ -51,6 +51,9 @@ exports.uploadDocToUser = async (req, res) => {
 // get all documents sent by the admin
 exports.getAdminDoc = async (req, res) => {
     try {
+        
+        console.debug("get doc runs")
+        
         const token = req.headers.authorization.split(" ")[1];
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
         const sender = decodedToken.id;
