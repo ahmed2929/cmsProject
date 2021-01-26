@@ -19,6 +19,7 @@ cloudinary.config({
 
 // Signup
 exports.signUp = async (req, res) => {
+  console.debug("run from admin ",req.decodedToken)
   console.debug("inside user signup req,body is : ",req.body)
   try {
     // get user with email
@@ -40,10 +41,32 @@ exports.signUp = async (req, res) => {
     // create new user if user does not exists
     req.body.role = "user";
     req.body.accountStatus = 'prospect'
+  
+  
+    const newUser = new User({...req.body});
 
-   
-    const newUser = await User.create(req.body);
 
+
+    if(req.decodedToken){
+
+      if(req.decodedToken.role==="admin"){
+        newUser.accountOfficer=req.decodedToken.id
+
+        const update = {
+          users: newUser._id
+      };
+     
+      const updatedAdmin = await Admin.findByIdAndUpdate(req.decodedToken.id, {
+          $push: update
+      }, {
+          new: true,
+      });
+
+      }
+     
+
+    }
+    await newUser.save()
     // create user token
     const token = jwt.sign({
       id: newUser._id,
@@ -178,7 +201,7 @@ exports.resetForgetPassword = async (req, res) => {
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const email = decodedToken.email;
 
-    if (!email) {
+    if (!email) {//check if email not exist 
       return errorResMsg(res, 400, "Token has expired or is not valid");
     }
 
@@ -274,15 +297,13 @@ exports.getUserData = async (req, res) => {
     const token = req.headers.authorization.split(" ")[1];
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const id = decodedToken.id;
-    const user = await User.findOne({
-      _id: id,
-    });
-    if (user && user.accountOfficer) {
-      const accountOfficer = await Admin.findOne({
-        _id: user.accountOfficer
-      });
-      user.accountOfficer = accountOfficer;
-    }
+    const user = await User.findById(id).populate("accountOfficer")
+    // if (user && user.accountOfficer) {
+    //   const accountOfficer = await Admin.findOne({
+    //     _id: user.accountOfficer
+    //   });
+    //   user.accountOfficer = accountOfficer;
+    // }
     return successResMsg(res, 200, user);
   } catch (err) {
     return errorResMsg(res, 500, err);

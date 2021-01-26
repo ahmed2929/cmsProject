@@ -60,6 +60,7 @@ exports.confirmAppointment = async (req, res) => {
 
 exports.getAppointments = async (req, res) => {
     try {
+        console.debug("get appointment runs")
         const token = req.headers.authorization.split(" ")[1];
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
         const id = decodedToken.id;
@@ -73,7 +74,7 @@ exports.getAppointments = async (req, res) => {
         }
         if (admin && admin.role === "superadmin") {
             console.log(admin);
-            appointments = await Appointment.find({}).populate('client');
+            appointments = await Appointment.find({}).populate('client accountOfficer');
         }
         return successResMsg(res, 200, appointments);
 

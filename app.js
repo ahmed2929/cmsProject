@@ -22,7 +22,7 @@ const adminRequestRoutes = require("./routes/admin/request");
 const invoiceRoutes = require("./routes/admin/invoice");
 
 // Port
-const port = process.env.PORT || 7373;
+const port = process.env.PORT || 6363;
 //connection url
 const DB = process.env.MONGOLAB_URI //|| `mongodb+srv://AK:1234@cluster0.wugxw.mongodb.net/cmsProject?retryWrites=true&w=majority
 //`;
