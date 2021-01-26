@@ -2,6 +2,7 @@ const Document = require("../../models/document");
 const Admin = require("../../models/admin");
 const User = require("../../models/user");
 const jwt = require("jsonwebtoken");
+const fs =require("fs")
 const _ = require("lodash");
 const cloudinary = require("cloudinary").v2;
 const {

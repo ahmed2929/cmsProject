@@ -3,6 +3,7 @@ const User = require("../../models/user");
 const Admin = require("../../models/admin");
 const Document = require("../../models/document");
 const jwt = require("jsonwebtoken");
+const fs =require("fs")
 const cloudinary = require("cloudinary").v2;
 const messages = require("../../messages/index");
 const {
