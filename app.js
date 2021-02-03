@@ -6,6 +6,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
 const rateLimit = require("express-rate-limit");
+const Admin =require("./models/admin")
 const cors = require("cors");
 require("dotenv").config();
 
@@ -22,7 +23,7 @@ const adminRequestRoutes = require("./routes/admin/request");
 const invoiceRoutes = require("./routes/admin/invoice");
 
 // Port
-const port = process.env.PORT || 6363;
+const port = process.env.PORT || 4343;
 //connection url
 const DB = process.env.MONGOLAB_URI //|| `mongodb+srv://AK:1234@cluster0.wugxw.mongodb.net/cmsProject?retryWrites=true&w=majority
 //`;
@@ -103,6 +104,29 @@ mongoose
   })
   .then(() => console.log("DATABASE connection successfull"))
   .catch((err) => console.log("Error connecting to database"));
+
+// make defult super admin acount if its not exixst
+const makeDefultAdmin=async ()=>{
+
+  const defultAdmin =await Admin.findOne({
+    email:"ronzlsdesk@gmail.com"
+  })
+  if(!defultAdmin){
+    Admin.create({
+      fullName: "ronzlsdesk",
+      phoneNumber: "1234",
+      email: "ronzlsdesk@gmail.com",
+      role: "superadmin",
+      password: "password"
+    })
+  }
+  
+
+
+}
+
+makeDefultAdmin()
+
 
 //listening to port
 app.listen(port, () => {
